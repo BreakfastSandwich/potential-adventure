@@ -38,6 +38,8 @@ main {
     flex-direction: column;
     align-content: center;
     flex: 0 1 15%;
+    padding: .5rem;
+    margin: .5rem;
 
 }
 
