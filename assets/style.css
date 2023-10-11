@@ -1,0 +1,50 @@
+/* Dropdown Button */
+
+body{
+    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+    height: auto;
+    background-color: #999;
+}
+
+#header {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: .5rem;
+    padding: .5rem;
+    font-family: 'Tektur', sans-serif;
+}
+
+main {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    align-content: center;
+
+}
+
+.search {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-content: center;
+    flex: 0 0 20%;
+
+}
+
+.display {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    align-content: center;
+    flex: 1 1 60%;
+}
