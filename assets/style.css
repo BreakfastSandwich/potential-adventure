@@ -34,10 +34,10 @@ main {
 
 .search {
     display: flex;
-    justify-content: space-around;
+    justify-content: start;
     flex-direction: column;
     align-content: center;
-    flex: 0 0 20%;
+    flex: 0 1 15%;
 
 }
 
@@ -47,4 +47,25 @@ main {
     flex-direction: row;
     align-content: center;
     flex: 1 1 60%;
+    flex-wrap: wrap;
 }
+
+.card {
+    flex: 1 1 10%;
+    margin-top: 3rem;
+
+    
+}
+
+.card-main {
+    flex: 1 1 50%;
+    margin-top: 3rem;
+    
+}
+
+.card-deck{
+    display: flex;
+    flex-direction: row;
+}
+
+
