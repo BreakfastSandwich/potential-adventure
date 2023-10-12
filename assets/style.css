@@ -4,6 +4,7 @@ body{
     background-color: aqua;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 header {
@@ -14,33 +15,64 @@ header {
     width: 100%;
     height: auto;
     background-color: #999;
+    position: fixed;
+    top: 0px;
+    height: 5rem;
 }
 
+
 #header {
+  
     font-size: 2rem;
     font-weight: bold;
     margin: .5rem;
     padding: .5rem;
     font-family: 'Tektur', sans-serif;
+    /* text-wrap: nowrap; */
+    font-size-adjust: 1.58;
 }
 
 main {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-direction: row;
     align-content: center;
 
 }
 
 .search {
+    position: sticky;
+    left: 0;
+    top: 5;
+    margin-top: 5rem;
     display: flex;
     justify-content: start;
     flex-direction: column;
     align-content: center;
     flex: 0 1 15%;
     padding: .5rem;
-    margin: .5rem;
+    margin-left: .5rem;
+    margin-right: .5rem;
+    border-right: 2px solid #333;
+   
 
+}
+
+.previous{
+    padding: .5rem;
+    margin-left: .5rem;
+    margin-right: .5rem;
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    align-content: center;
+    border-right: 2px solid #333;
+   
+}
+
+#userLocation {
+    /* padding-bottom: .5rem; */
+     border-bottom: 2px solid #666;
 }
 
 .display {
@@ -48,8 +80,13 @@ main {
     justify-content: space-around;
     flex-direction: row;
     align-content: center;
-    flex: 1 1 60%;
+    flex: 0 0 80%;
     flex-wrap: wrap;
+    /* overflow: scroll; */
+    right: 0px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* align-self: flex-end; */
 }
 
 .card {
@@ -70,4 +107,10 @@ main {
     flex-direction: row;
 }
 
-
+@media screen and (min-device-width:960px) {
+    
+    .card-deck {
+        flex-direction: column;
+        flex: 1 1 80%;
+    }
+}

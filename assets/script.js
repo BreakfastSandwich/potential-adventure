@@ -5,6 +5,8 @@ const userZipForm = document.getElementById('zipSearch')
 const zipModalbtn = document.getElementById('zipSearchBtn')
 const cityModalbtn = document.getElementById('cityModalbtn')
 const citySearchInput = document.getElementById('citySearch')
+const previousSearchList = document.getElementById('previousSearchList')
+const previousSearchArray = JSON.parse(localStorage.getItem('previousSearchArray')) || []
 
 
 

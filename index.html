@@ -26,129 +26,138 @@
     </header>
 
     <main>
-
-        <div class="search">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cityStateModal">
-                Search by City and State
-            </button>
-            <br>
-
-
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#zipSearchModal">
-                Search by Zipcode
-            </button>
+        <aside>
+            <div class="search">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cityStateModal">
+                    Search by City and State
+                </button>
+                <br>
 
 
-            <br>
-            <button id="userLocation" type="button" class="btn btn-primary">Use Current Location</button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#zipSearchModal">
+                    Search by Zipcode
+                </button>
 
-            
 
-            <!-- Modal -->
-            <div class="modal fade" id="cityStateModal" tabindex="-1" aria-labelledby="cityStateModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Search by City and State</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
+                <br>
+                <button id="userLocation" type="button" class="btn btn-primary">Use Current Location</button>
 
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="inputGroup-sizing-default">City</span>
-                                <input type="text" id="citySearch" class="form-control" aria-label="Sizing example input"
-                                    placeholder="Montgomery" aria-describedby="inputGroup-sizing-default">
+
+
+                <!-- Modal -->
+                <div class="modal fade" id="cityStateModal" tabindex="-1" aria-labelledby="cityStateModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Search by City and State</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                             </div>
+                            <div class="modal-body">
 
-                            <div class="input-group mb-3">
-                                <label class="input-group-text" for="inputGroupSelect01">State</label>
-                                <select class="form-select" id="stateSelect">
-                                    <option value="alabama">Alabama</option>
-                                    <option value="alaska">Alaska</option>
-                                    <option value="arizona">Arizona</option>
-                                    <option value="arkansas">Arkansas</option>
-                                    <option value="california">California</option>
-                                    <option value="colorado">Colorado</option>
-                                    <option value="connecticut">Connecticut</option>
-                                    <option value="delaware">Delaware</option>
-                                    <option value="districtofcolumbia">District Of Columbia</option>
-                                    <option value="florida">Florida</option>
-                                    <option value="georgia">Georgia</option>
-                                    <option value="hawaii">Hawaii</option>
-                                    <option value="idaho">Idaho</option>
-                                    <option value="illinois">Illinois</option>
-                                    <option value="indiana">Indiana</option>
-                                    <option value="iowa">Iowa</option>
-                                    <option value="kansas">Kansas</option>
-                                    <option value="kentucky">Kentucky</option>
-                                    <option value="louisiana">Louisiana</option>
-                                    <option value="maine">Maine</option>
-                                    <option value="maryland">Maryland</option>
-                                    <option value="massachusetts">Massachusetts</option>
-                                    <option value="michigan">Michigan</option>
-                                    <option value="minnesota">Minnesota</option>
-                                    <option value="mississippi">Mississippi</option>
-                                    <option value="missouri">Missouri</option>
-                                    <option value="montana">Montana</option>
-                                    <option value="nebraska">Nebraska</option>
-                                    <option value="nevada">Nevada</option>
-                                    <option value="newhampshire">New Hampshire</option>
-                                    <option value="newjersey">New Jersey</option>
-                                    <option value="newmexico">New Mexico</option>
-                                    <option value="newyork">New York</option>
-                                    <option value="northcarolina">North Carolina</option>
-                                    <option value="northdakota">North Dakota</option>
-                                    <option value="ohio">Ohio</option>
-                                    <option value="oklahoma">Oklahoma</option>
-                                    <option value="oregon">Oregon</option>
-                                    <option value="pennsylvania">Pennsylvania</option>
-                                    <option value="rhodeisland">Rhode Island</option>
-                                    <option value="southcarolina">South Carolina</option>
-                                    <option value="southdakota">South Dakota</option>
-                                    <option value="tennessee">Tennessee</option>
-                                    <option value="texas">Texas</option>
-                                    <option value="utah">Utah</option>
-                                    <option value="vermont">Vermont</option>
-                                    <option value="virginia">Virginia</option>
-                                    <option value="washington">Washington</option>
-                                    <option value="westvirginia">West Virginia</option>
-                                    <option value="wisconsin">Wisconsin</option>
-                                    <option value="wyoming">Wyoming</option>
-                                </select>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">City</span>
+                                    <input type="text" id="citySearch" class="form-control"
+                                        aria-label="Sizing example input" placeholder="Montgomery"
+                                        aria-describedby="inputGroup-sizing-default">
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <label class="input-group-text" for="inputGroupSelect01">State</label>
+                                    <select class="form-select" id="stateSelect">
+                                        <option value="alabama">Alabama</option>
+                                        <option value="alaska">Alaska</option>
+                                        <option value="arizona">Arizona</option>
+                                        <option value="arkansas">Arkansas</option>
+                                        <option value="california">California</option>
+                                        <option value="colorado">Colorado</option>
+                                        <option value="connecticut">Connecticut</option>
+                                        <option value="delaware">Delaware</option>
+                                        <option value="districtofcolumbia">District Of Columbia</option>
+                                        <option value="florida">Florida</option>
+                                        <option value="georgia">Georgia</option>
+                                        <option value="hawaii">Hawaii</option>
+                                        <option value="idaho">Idaho</option>
+                                        <option value="illinois">Illinois</option>
+                                        <option value="indiana">Indiana</option>
+                                        <option value="iowa">Iowa</option>
+                                        <option value="kansas">Kansas</option>
+                                        <option value="kentucky">Kentucky</option>
+                                        <option value="louisiana">Louisiana</option>
+                                        <option value="maine">Maine</option>
+                                        <option value="maryland">Maryland</option>
+                                        <option value="massachusetts">Massachusetts</option>
+                                        <option value="michigan">Michigan</option>
+                                        <option value="minnesota">Minnesota</option>
+                                        <option value="mississippi">Mississippi</option>
+                                        <option value="missouri">Missouri</option>
+                                        <option value="montana">Montana</option>
+                                        <option value="nebraska">Nebraska</option>
+                                        <option value="nevada">Nevada</option>
+                                        <option value="newhampshire">New Hampshire</option>
+                                        <option value="newjersey">New Jersey</option>
+                                        <option value="newmexico">New Mexico</option>
+                                        <option value="newyork">New York</option>
+                                        <option value="northcarolina">North Carolina</option>
+                                        <option value="northdakota">North Dakota</option>
+                                        <option value="ohio">Ohio</option>
+                                        <option value="oklahoma">Oklahoma</option>
+                                        <option value="oregon">Oregon</option>
+                                        <option value="pennsylvania">Pennsylvania</option>
+                                        <option value="rhodeisland">Rhode Island</option>
+                                        <option value="southcarolina">South Carolina</option>
+                                        <option value="southdakota">South Dakota</option>
+                                        <option value="tennessee">Tennessee</option>
+                                        <option value="texas">Texas</option>
+                                        <option value="utah">Utah</option>
+                                        <option value="vermont">Vermont</option>
+                                        <option value="virginia">Virginia</option>
+                                        <option value="washington">Washington</option>
+                                        <option value="westvirginia">West Virginia</option>
+                                        <option value="wisconsin">Wisconsin</option>
+                                        <option value="wyoming">Wyoming</option>
+                                    </select>
+                                </div>
+
                             </div>
-
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" id="cityModalbtn" class="btn btn-primary">Save changes</button>
+                            </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" id="cityModalbtn" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+                <ul id="previousSearch"></ul>
+
+                <div class="modal fade" id="zipSearchModal" tabindex="-1" aria-labelledby="zipSearchModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="zipSearchModalLabel"> Search by Zipcode</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <input id="zipSearch" class="form-control" type="text" placeholder="Enter a ZipCode"
+                                    aria-label="default input example">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button id="zipSearchBtn" type="button" class="btn btn-primary">Save changes</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <ul id="previousSearch"></ul>
+            <div class="previous">
+                <button type="button" class="btn btn-primary" id="clearPreviousSearchs">Clear Previous Searchs</button>
+                <ul class="previousSearchList">
 
-            <div class="modal fade" id="zipSearchModal" tabindex="-1" aria-labelledby="zipSearchModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="zipSearchModalLabel"> Search by Zipcode</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <input id="zipSearch" class="form-control" type="text" placeholder="Enter a ZipCode"
-                                aria-label="default input example">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button id="zipSearchBtn" type="button" class="btn btn-primary">Save changes</button>
-                        </div>
-                    </div>
-                </div>
+                </ul>
             </div>
-
-        </div>
+        </aside>
 
         <div class="display">
 
