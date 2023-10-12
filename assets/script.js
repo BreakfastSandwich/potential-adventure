@@ -18,7 +18,7 @@ zipModalbtn.addEventListener('click', function weatherByZip(e) {
     var ZipRequest = `https://api.openweathermap.org/data/2.5/forecast?zip=${userZipInput}&appid=608f5d7e99b3bee2a797c9ab316ee2c6&units=imperial`
 
     console.log(userZipInput)
-  
+
 
 
     fetch(ZipRequest)
@@ -36,8 +36,8 @@ zipModalbtn.addEventListener('click', function weatherByZip(e) {
 
 // Search by User's current location function
 
-userLocationBtn.addEventListener ('click', function () {
-navigator.geolocation.getCurrentPosition((data)=>{weatherByCurrentLocation(data)})
+userLocationBtn.addEventListener('click', function () {
+    navigator.geolocation.getCurrentPosition((data) => { weatherByCurrentLocation(data) })
 })
 
 
@@ -48,14 +48,14 @@ function weatherByCurrentLocation(data) {
     let userLong = data.coords.longitude
     console.log(userLat)
     console.log(userLong)
-    
 
-    
-    
+
+
+
     var userLocationRequest = `https://api.openweathermap.org/data/2.5/forecast?lat=${userLat}&lon=${userLong}&appid=608f5d7e99b3bee2a797c9ab316ee2c6&units=imperial`
 
     console.log(data)
-    
+
 
 
     fetch(userLocationRequest)
@@ -66,8 +66,8 @@ function weatherByCurrentLocation(data) {
             console.log(data);
 
 
-       
-            
+
+
 
 
             return
@@ -83,13 +83,14 @@ cityModalbtn.addEventListener('click', function weatherByCity(e) {
     // e.preventDefault()
     console.log('taco')
     const userCityInput = document.getElementById('citySearch').value
-    const userStateInput = document.getElementById('stateSelect').value
-    
+    const stateInput = document.getElementById('stateSelect').value
+    const userStateInput = stateInput.toLowerCase()
+
 
     var CityRequest = `https://api.openweathermap.org/data/2.5/forecast?q=${userCityInput},${userStateInput}&appid=608f5d7e99b3bee2a797c9ab316ee2c6&units=imperial`
 
     console.log(userCityInput)
-  
+    console.log(userStateInput)
 
 
     fetch(CityRequest)
