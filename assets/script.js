@@ -6,7 +6,24 @@ const zipModalbtn = document.getElementById('zipSearchBtn')
 const cityModalbtn = document.getElementById('cityModalbtn')
 const citySearchInput = document.getElementById('citySearch')
 const previousSearchList = document.getElementById('previousSearchList')
-const previousSearchArray = JSON.parse(localStorage.getItem('previousSearchArray')) || []
+
+
+
+function RetreivePrevious() {
+    const previousSearchArray = JSON.parse(localStorage.getItem('previousSearchArray')) || []
+    console.log(previousSearchArray)
+
+    for (let i = 0; i<previousSearchArray.length; i++) {
+        const previousSearch = previousSearchArray[i]
+
+        const buttonEl = document.createElement('button')
+        const buttonElLabel = document.createTextNode(`${cityName}`)
+        buttonEl.appendChild(buttonElLabel)
+        previousSearchList.appendChild(buttonEl)
+
+
+    }
+}
 
 
 
