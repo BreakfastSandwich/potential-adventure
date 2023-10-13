@@ -10,6 +10,7 @@ const previousSearchList = document.getElementById('previousSearchList')
 
 
 function RetreivePrevious() {
+
     const previousSearchArray = JSON.parse(localStorage.getItem('previousSearchArray')) || []
     console.log(previousSearchArray)
 
@@ -17,7 +18,7 @@ function RetreivePrevious() {
         const previousSearch = previousSearchArray[i]
 
         const buttonEl = document.createElement('button')
-        const buttonElLabel = document.createTextNode(`${cityName}`)
+        const buttonElLabel = document.createTextNode(`${location}`)
         buttonEl.appendChild(buttonElLabel)
         previousSearchList.appendChild(buttonEl)
 
@@ -25,6 +26,12 @@ function RetreivePrevious() {
     }
 }
 
+function StoreSearch() {
+    const previousSearchArray = JSON.parse(localStorage.getItem('previousSearchArray')) || []
+    console.log(previousSearchArray)
+    
+
+}
 
 
 // Search by Zip function

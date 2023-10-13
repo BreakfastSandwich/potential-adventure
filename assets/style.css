@@ -5,6 +5,11 @@ body{
     display: flex;
     flex-direction: column;
     position: relative;
+    background: url(./nature.jpg) no-repeat fixed center;
+    background-size: cover;
+    /* object-fit: contain;
+    object-position: center;  */
+    
 }
 
 header {
@@ -14,10 +19,15 @@ header {
     align-content: center;
     width: 100%;
     height: auto;
-    background-color: #999;
+    background-color: #777;
     position: fixed;
     top: 0px;
     height: 5rem;
+    z-index: 2;
+}
+
+.modal {
+    z-index: 1100;
 }
 
 
@@ -42,13 +52,19 @@ main {
 
 aside {
     border-right: 2px solid #333;
+    position: fixed;
+    left: 0;
+    top: 5rem;
+    z-index: 1100;
+    height: 100%;
+    background-color: #99999954;
 }
 
 .search {
-    position: sticky;
+    /* position: absolute; */
     left: 0;
-    top: 5;
-    margin-top: 5rem;
+    top: 0;
+    margin-top: .5rem;
     display: flex;
     justify-content: start;
     flex-direction: column;
@@ -84,7 +100,7 @@ aside {
     justify-content: space-around;
     flex-direction: row;
     align-content: center;
-    flex: 0 0 80%;
+    flex: 1 1 80%;
     flex-wrap: wrap;
     /* overflow: scroll; */
     right: 0px;
@@ -96,6 +112,9 @@ aside {
 .card {
     flex: 1 1 10%;
     margin-top: 3rem;
+    z-index: 1;
+    margin-left: 20%;
+    margin-right: 5%;
 
     
 }
