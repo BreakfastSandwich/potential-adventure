@@ -14,7 +14,7 @@ function RetreivePrevious() {
     const previousSearchArray = JSON.parse(localStorage.getItem('previousSearchArray')) || []
     console.log(previousSearchArray)
 
-    for (let i = 0; i<previousSearchArray.length; i++) {
+    for (let i = 0; i < previousSearchArray.length; i++) {
         const previousSearch = previousSearchArray[i]
 
         const buttonEl = document.createElement('button')
@@ -26,12 +26,39 @@ function RetreivePrevious() {
     }
 }
 
-function StoreSearch() {
+function StoreSearch(city) {
     const previousSearchArray = JSON.parse(localStorage.getItem('previousSearchArray')) || []
+    previousSearchArray.push(city)
+    localStorage.setItem("previousSearchArray", JSON.stringify(previousSearchArray))
     console.log(previousSearchArray)
-    
 
 }
+
+
+
+    // function searchResults(data) {
+
+    //     let cityName = data.city.name
+    //     let cityLat = data.city.coord.lat
+    //     let cityLong = data.city.coord.lon
+    
+    //     console.log(cityName)
+    //     console.log(cityLat)
+    //     console.log(cityLong)
+    
+    
+    
+    
+    // function CityConstruct(city, Lat, Long) {
+    //     this.city = city
+    //     this.lat = Lat
+    //     this.long = Long
+    
+    // }
+    
+    
+//     const citySearch = new CityConstruct(cityName, cityLat, cityLong)
+// }
 
 
 // Search by Zip function
@@ -53,6 +80,7 @@ zipModalbtn.addEventListener('click', function weatherByZip(e) {
         })
         .then(function (data) {
             console.log(data);
+            searchResults(data)
 
             return
         })
@@ -74,13 +102,17 @@ function weatherByCurrentLocation(data) {
     let userLong = data.coords.longitude
     console.log(userLat)
     console.log(userLong)
+    weatherByLatLong(userLat, userLong)
+}
 
 
 
+function weatherByLatLong(Lat, Long) {
 
-    var userLocationRequest = `https://api.openweathermap.org/data/2.5/forecast?lat=${userLat}&lon=${userLong}&appid=608f5d7e99b3bee2a797c9ab316ee2c6&units=imperial`
 
-    console.log(data)
+    var userLocationRequest = `https://api.openweathermap.org/data/2.5/forecast?lat=${Lat}&lon=${Long}&appid=608f5d7e99b3bee2a797c9ab316ee2c6&units=imperial`
+
+    // console.log(data)
 
 
 
@@ -90,6 +122,8 @@ function weatherByCurrentLocation(data) {
         })
         .then(function (data) {
             console.log(data);
+
+            searchResults(data)
 
 
 
@@ -125,6 +159,7 @@ cityModalbtn.addEventListener('click', function weatherByCity(e) {
         })
         .then(function (data) {
             console.log(data);
+            searchResults(data)
 
             return
         })
@@ -132,8 +167,29 @@ cityModalbtn.addEventListener('click', function weatherByCity(e) {
 
 
 
+function searchResults(data) {
+
+    let cityName = data.city.name
+    let cityLat = data.city.coord.lat
+    let cityLong = data.city.coord.lon
+
+    console.log(cityName)
+    console.log(cityLat)
+    console.log(cityLong)
 
 
 
 
+function CityConstruct(city, Lat, Long) {
+    this.city = city
+    this.lat = Lat
+    this.long = Long
+
+}
+
+
+const citySearch = new CityConstruct(cityName, cityLat, cityLong)
+
+StoreSearch(citySearch)
+}
 
