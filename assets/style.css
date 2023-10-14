@@ -19,11 +19,14 @@ header {
     align-content: center;
     width: 100%;
     height: auto;
-    background-color: #777;
+    /* background-color: #777; */
     position: fixed;
     top: 0px;
     height: 5rem;
     z-index: 2;
+    background-image: linear-gradient(to bottom right, rgba(150, 212, 228, 0.336), rgba(173, 209, 241, 0.582));
+    backdrop-filter: blur(.1rem);
+    box-shadow: 0 2px 5px 1px #666;
 }
 
 .modal {
@@ -55,9 +58,11 @@ aside {
     position: fixed;
     left: 0;
     top: 5rem;
-    z-index: 1100;
+    z-index: 1000;
     height: 100%;
-    background-color: #99999954;
+    background-color: #99999944;
+    backdrop-filter: blur(.1rem);
+    /* background-image: linear-gradient(to top right, rgba(150, 228, 202, 0.87), rgba(173, 209, 241, 0.582)); */
 }
 
 .search {
@@ -69,14 +74,15 @@ aside {
     justify-content: start;
     flex-direction: column;
     align-content: center;
-    flex: 0 1 15%;
+    /* flex: 0 1 15%; */
     padding: .5rem;
     margin-left: .5rem;
     margin-right: .5rem;
+    width: 10vw;
+    
+    
     /* border-right: 2px solid #333; */
-   
-
-}
+   }
 
 .previous{
     padding: .5rem;
@@ -93,6 +99,15 @@ aside {
 #userLocation {
     /* padding-bottom: .5rem; */
      border-bottom: 2px solid #666;
+}
+
+#zipCodeSearch {
+    border-bottom: 2px solid #666;
+}
+
+#clearPreviousSearchs{
+    /* margin-top: 1rem; */
+    border-bottom: 2px solid #666;
 }
 
 .display {
@@ -115,20 +130,100 @@ aside {
     z-index: 1;
     margin-left: 20%;
     margin-right: 5%;
-
+    box-shadow: 0 2px 5px 1px #666;
+    backdrop-filter: blur(.1rem);
+    background-color: none; 
     
 }
 
+
+.card-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+/* 
 .card-main {
-    flex: 1 1 50%;
-    margin-top: 3rem;
+    width: 100%;
+    margin-top: 2.5rem;
+    position: fixed;
+    z-index: 2;
+    ;
+    /* border-bottom: 2px solid #666; */
     
+/* } */
+
+#currentDay {
+    backdrop-filter: blur(.1rem);    
+    margin-left: 20%;
+    margin-right: 5%;
+    box-shadow: 0 2px 5px 1px #666;
+    backdrop-filter: blur(.1rem);
+    flex-direction: row;
+    justify-content: space-around;
+    border-radius: .2rem;
+    height: 15.5vh;
+    display: flex;
+    width: 75vw;
+    margin-top: 2.5rem;
+    position: fixed;
+    z-index: 2;
+    top:5vh;
+    background-image: linear-gradient(to bottom right,rgba(173, 209, 241, 0.425), rgba(255, 255, 255, 0.808));
 }
+
+.daysWeather{
+    backdrop-filter: blur(.1rem);    
+    margin-left: 20%;
+    margin-right: 5%;
+    box-shadow: 0 2px 5px 1px #666;
+    backdrop-filter: blur(.1rem);
+    flex-direction: row;
+    justify-content: space-around;
+    border-radius: .2rem;
+    height: 15.5vh;
+    display: flex;
+    width: 75vw;
+    margin-top: 2.5rem;    
+    z-index: 2;
+    background-image: linear-gradient(to bottom right,rgba(173, 209, 241, 0.425), rgba(255, 255, 255, 0.808));
+}
+
+
 
 .card-deck{
     display: flex;
     flex-direction: row;
+    overflow-y: scroll;
+    height: 70vh;
+    margin-top: 25vh;
+   
+    /* position: absolute; */
 }
+
+.previousButton {
+    margin-top: .5rem;
+    /* flex-wrap: wrap;
+    align-self: center; */
+}
+
+#previousSearchList {
+
+    margin-top: .5rem;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-content: center;
+    flex: 0 1 15%;
+    padding: .5rem;
+    margin-left: .5rem;
+    margin-right: .5rem;
+}
+#previousSearchList>li {
+    margin: .5rem;
+    list-style-type: none
+}
+
 
 @media screen and (min-device-width:960px) {
     
