@@ -6,6 +6,8 @@ const zipModalbtn = document.getElementById('zipSearchBtn')
 const cityModalbtn = document.getElementById('cityModalbtn')
 const citySearchInput = document.getElementById('citySearch')
 const previousSearchList = document.getElementById('previousSearchList')
+const weatherPrintEl = document.getElementById('weatherPrint')
+const recallBtnEl = document.querySelectorAll('.recall')
 
 // Main card print
 const cityPrintEl = document.getElementById('cityPrint')
@@ -15,7 +17,9 @@ const currentDayImg = document.getElementById('currentDayImg')
 const currentDayTemp = document.getElementById('currentTemp')
 const currentFeelsLike = document.getElementById('currentFeelsLike')
 const currentDayHumidity = document.getElementById('currentHumidity')
-
+const currentDayWindSpeedEl = document.getElementById('currentDayWindSpeed')
+const currentDayWindDirectionEl = document.getElementById('currentDayWindDirection')
+const currentDayWeatherConditionEl = document.getElementById('currentDayWeatherCondition')
 
 function RetreivePrevious() {
 
@@ -34,7 +38,7 @@ function RetreivePrevious() {
         const list = document.createElement('li')
         const buttonEl = document.createElement('button')
         buttonEl.innerText = city
-        buttonEl.setAttribute('class', 'btn btn-primary previousButton')
+        buttonEl.setAttribute('class', 'btn recall btn-primary previousButton')
         buttonEl.setAttribute('latitude', lat)
         buttonEl.setAttribute('longitude', long)
 
@@ -42,7 +46,7 @@ function RetreivePrevious() {
 
         list.appendChild(buttonEl)
         previousSearchList.appendChild(list)
-        // previousSearchList.appendChild(list)
+        
 
 
     }
@@ -66,9 +70,12 @@ function StoreSearch(city) {
 
 zipModalbtn.addEventListener('click',
     function weatherByZip() {
-        // e.preventDefault()
+       
+        
         console.log('taco')
         const userZipInput = document.getElementById('zipSearch').value
+
+if (userZipInput.length == 5){
 
         var ZipRequest = `https://api.openweathermap.org/data/2.5/forecast?zip=${userZipInput}&appid=608f5d7e99b3bee2a797c9ab316ee2c6&units=imperial`
 
@@ -81,12 +88,16 @@ zipModalbtn.addEventListener('click',
                 return response.json();
             })
             .then(function (data) {
-                console.log(data);
-                searchResults(data)
-                printWeather(data)
-
-                return
+                if (data.cod == 200) {
+                    searchResults(data)
+                    printWeather(data)
+                    } else if (data.cod == 404){
+                        cityPrintEl.innerText = "The Zip Code you searched was not found. Please Try Again."
+                    }
             })
+            .catch(function (error) {
+                console.log(error);
+            });
 
 
         var CurrentZipRequest = `https://api.openweathermap.org/data/2.5/weather?zip=${userZipInput}&appid=608f5d7e99b3bee2a797c9ab316ee2c6&units=imperial`
@@ -105,6 +116,12 @@ zipModalbtn.addEventListener('click',
 
                 return
             })
+            .catch(function (error) {
+                console.log(error);
+            });
+        } else {
+            cityPrintEl.innerText = "Please use a Zip Code that is 5 digits in length."
+        }
     })
 
 
@@ -121,11 +138,21 @@ userLocationBtn.addEventListener('click', function () {
 function weatherByCurrentLocation(data) {
     let userLat = data.coords.latitude
     let userLong = data.coords.longitude
-    console.log(userLat)
-    console.log(userLong)
+    
     weatherByLatLong(userLat, userLong)
 
 }
+
+function recallSearch() {
+    let recall = JSON.parse(localStorage.getItem('previousSearchArray')) 
+    console.log(recall)
+}
+
+
+recallBtnEl.forEach(function (currentBtn) {
+    currentBtn.addEventListener('click', recallSearch)
+    console.log('taco')
+  })
 
 
 
@@ -134,7 +161,7 @@ function weatherByLatLong(Lat, Long) {
 
     var userLocationRequest = `https://api.openweathermap.org/data/2.5/forecast?lat=${Lat}&lon=${Long}&appid=608f5d7e99b3bee2a797c9ab316ee2c6&units=imperial`
 
-    // console.log(data)
+
 
 
 
@@ -144,16 +171,21 @@ function weatherByLatLong(Lat, Long) {
         })
         .then(function (data) {
             console.log(data);
-
-            searchResults(data)
-            printWeather(data)
+            if (data.cod == 200) {
+                searchResults(data)
+                printWeather(data)
+                } else if (data.cod == 404){
+                    cityPrintEl.innerText = "The Location you are using could not be found. Please Try Again."
+                }
             return
         })
-
+        .catch(function (error) {
+            console.log(error);
+        });
     var CurrentLocationRequest = `https://api.openweathermap.org/data/2.5/weather?lat=${Lat}&lon=${Long}&appid=608f5d7e99b3bee2a797c9ab316ee2c6&units=imperial`
 
 
-    console.log(CurrentLocationRequest)
+ 
 
 
 
@@ -165,8 +197,12 @@ function weatherByLatLong(Lat, Long) {
             console.log(data);
             printCurrentWeather(data)
 
-            return
+
         })
+        .catch(function (error) {
+            console.log(error);
+        });
+    return
 }
 
 
@@ -175,7 +211,7 @@ function weatherByLatLong(Lat, Long) {
 
 
 cityModalbtn.addEventListener('click', function weatherByCity(e) {
-    // e.preventDefault()
+    
     console.log('taco')
     const userCityInput = document.getElementById('citySearch').value
     const stateInput = document.getElementById('stateSelect').value
@@ -194,16 +230,22 @@ cityModalbtn.addEventListener('click', function weatherByCity(e) {
         })
         .then(function (data) {
             console.log(data);
+            if (data.cod == 200) {
             searchResults(data)
             printWeather(data)
+            } else if (data.cod == 404){
+                cityPrintEl.innerText = "The City and State combination you searched was not found. Please Try Again."
+            }
 
             return
         })
+        .catch(function (error) {
+            console.log(error);
+        });
 
     var CurrentCityRequest = `https://api.openweathermap.org/data/2.5/weather?q=${userCityInput},${userStateInput}&appid=608f5d7e99b3bee2a797c9ab316ee2c6&units=imperial`
 
 
-    console.log(CurrentCityRequest)
 
 
 
@@ -217,6 +259,9 @@ cityModalbtn.addEventListener('click', function weatherByCity(e) {
 
             return
         })
+        .catch(function (error) {
+            console.log(error);
+        });
 })
 
 
@@ -226,12 +271,6 @@ function searchResults(data) {
     let cityName = data.city.name
     let cityLat = data.city.coord.lat
     let cityLong = data.city.coord.lon
-
-    console.log(cityName)
-    console.log(cityLat)
-    console.log(cityLong)
-
-
 
 
     function CityConstruct(city, Lat, Long) {
@@ -248,20 +287,152 @@ function searchResults(data) {
 
 }
 
+let WindDirection;
+function WindDegToDirection(wd) {
+    switch (true) {
+        case 0:
+            WindDirection = "N";
+            break;
+        case 360:
+            WindDirection = "N";
+            break;
+        case 90:
+            WindDirection = "E";
+            break;
+        case 180:
+            WindDirection = "S";
+            break;
+        case 270:
+            WindDirection = "W";
+            break;
+        case (wd > 0 && wd < 90):
+            WindDirection = "NE";
+            break;
+        case (wd > 90 && wd < 180):
+            WindDirection = "SE";
+            break;
+        case (wd > 180 && wd < 270):
+            WindDirection = "SW";
+            break;
+        case (wd > 270 && wd < 360):
+            WindDirection = "NW";
+            break;
+        default:
+            WindDirection = "N/A";
+            break;
+    }
+}
+
 
 function printWeather(data) {
     let city = data.city.name
     let sunrise = data.city.sunrise
     let sunset = data.city.sunset
-    let timeZone = data.city.timezone
+    const timeZone = data.city.timezone
+    let weatherArray = data.list
+    console.log(weatherArray)
+
+ 
+    for (let i = 0; i < weatherArray.length; i++) {
+        let timeStamp = weatherArray[i].dt
+        let tempMax = weatherArray[i].main.temp_max
+        let tempMin = weatherArray[i].main.temp_min
+        let weatherCondition = weatherArray[i].weather[0].description
+        let weatherConditionIcon = weatherArray[i].weather[0].icon
+        let windSpeed = weatherArray[i].wind.speed
+        let windDirectionDeg = weatherArray[i].wind.deg
+        let humidity = weatherArray[i].main.humidity
+
+       
+// this converts the UTC Timestamp the time/date and adjusts for time zone shifts
+        let time = new Date((timeStamp +(timeZone+14400))*1000).toLocaleString()
+        console.log(time)
+
+       
+
+        let WindDirection;
+        function WindDegToDirection(wd) {
+            switch (true) {
+                case 0:
+                    WindDirection = "N";
+                    break;
+                case 360:
+                    WindDirection = "N";
+                    break;
+                case 90:
+                    WindDirection = "E";
+                    break;
+                case 180:
+                    WindDirection = "S";
+                    break;
+                case 270:
+                    WindDirection = "W";
+                    break;
+                case (wd > 0 && wd < 90):
+                    WindDirection = "NE";
+                    break;
+                case (wd > 90 && wd < 180):
+                    WindDirection = "SE";
+                    break;
+                case (wd > 180 && wd < 270):
+                    WindDirection = "SW";
+                    break;
+                case (wd > 270 && wd < 360):
+                    WindDirection = "NW";
+                    break;
+                default:
+                    WindDirection = "N/A";
+                    break;
+            }
+    
+            return WindDirection;
+        }
+
+        
+
+        WindDegToDirection(windDirectionDeg)
+
+        const Print = document.createElement('div')
+
+        Print.innerHTML =
+            `<div class="daysWeather">
+          
+            <div> <p>${time}</p></div> 
+
+                 <div><img src="./assets/images/${weatherConditionIcon}.png" alt="  ${weatherCondition}" / class="img"><p>${weatherCondition}</p></div>
+                <div class="card-body"
+                
+                        
+                        <p>Temp High: ${tempMax}</p>
+                        <p>Temp Low: ${tempMin}</p>
+                        <p>Humidity: ${humidity}</p>
+                    </div>
+            
+
+                <div class="card-body">
+                    <p>Wind Speed: ${windSpeed}</p>
+                    <p>Wind Direction: ${WindDirection}</p>
+                    
+                    
+                </div>
+                
+            </div>`
+
+        weatherPrintEl.appendChild(Print)
 
 
 
 
-    console.log(city)
-    console.log(sunrise)
-    console.log(sunset)
-    console.log(timeZone)
+        console.log(timeStamp)
+        console.log(tempMax)
+        console.log(tempMin)
+        console.log(weatherCondition)
+        console.log(weatherConditionIcon)
+        console.log(windSpeed)
+
+    
+    }
+ 
 
 
 
@@ -273,8 +444,8 @@ function printWeather(data) {
 
 function printCurrentWeather(data) {
     let city = data.name
-    let sunrise = data.sys.sunrise
-    let sunset = data.sys.sunset
+    let sunriseUTC = data.sys.sunrise
+    let sunsetUTC = data.sys.sunset
     let timeZone = data.timezone
     let tempTrue = data.main.temp
     let tempFeelsLike = data.main.feels_like
@@ -284,11 +455,8 @@ function printCurrentWeather(data) {
     let weatherCondition = data.weather[0].description
     let weatherIconCode = data.weather[0].id
     let weatherIconCodeNum = data.weather[0].icon
-    // let sunSet = sunset.toTimeString()
-
-
-    // using a switch to convert the wind direction degree into compass value
     let WindDirection;
+
     function currentWindDegToDirection(wd) {
         switch (true) {
             case 0:
@@ -326,77 +494,28 @@ function printCurrentWeather(data) {
         return WindDirection;
     }
 
+    let sunrise = new Date((sunriseUTC + (timeZone + 14400))*1000).toLocaleString()
+    let sunset = new Date((sunsetUTC+ (timeZone + 14400))*1000).toLocaleString()
 
-
-    // using a switch to determine the correct weather img to display.
-    // the weather table codes was found at https://openweathermap.org/weather-conditions
-
-    // let weatherIcon;
-    // function currentWeatherCodeToIcon(WIC) {
-    //     switch (true) {
-
-    //         case 511:
-    //             weatherIcon = '13d'
-    //             break;
-    //         case 800:
-    //             weatherIcon = '01d'
-    //             break;
-    //         case 801:
-    //             weatherIcon = '02d'
-    //             break;
-    //         case 802:
-    //             weatherIcon = '03d'
-    //             break;
-    //         case 803:
-    //             weatherIcon = '04d'
-    //             break;
-    //         case 804:
-    //             weatherIcon = '04d'
-    //             break;
-    //         case (WIC > 199 && WIC < 233):
-    //             weatherIcon = '11d'
-    //             break;
-    //         case (WIC > 299 && WIC < 322):
-    //             weatherIcon = '09d'
-    //             break;
-    //         case (WIC > 519 && WIC < 532):
-    //             weatherIcon = '09d'
-    //             break;
-    //         case (WIC > 499 && WIC < 505):
-    //             weatherIcon = '11d'
-    //             break;
-    //         case (WIC > 599 && WIC < 623):
-    //             weatherIcon = '13d'
-    //             break;
-    //         case (WIC > 699 && WIC < 782):
-    //             weatherIcon = '11d'
-    //             break;
-    //         default:
-    //             weatherIcon = "N/A";
-    //             break;
-
-
-    //     }
-    //     return weatherIcon
-    // }
+   
 
 
     currentWindDegToDirection(windDeg)
-    // currentWeatherCodeToIcon(weatherIconCode)
+
 
 
 
     cityPrintEl.innerText = city
     currentDaySunrise.innerText = `Sunrise: ${sunrise}`
     currentDaySunset.innerText = `Sunset: ${sunset}`
-    currentDayImg.innerHTML = weatherIconCodeNum
+    currentDayImg.innerHTML = `<img src="./assets/images/${weatherIconCodeNum}.png" alt="${weatherCondition}" class="img"><p>${weatherCondition}</p></img>`
     currentDayTemp.innerText = `Current Temp: ${tempTrue}`
     currentFeelsLike.innerText = `Currently Feels Like: ${tempFeelsLike}`
     currentDayHumidity.innerText = `Current Humidity: ${humidity}`
-        .innerText = `Current Humidity: ${windSpeed}`
-            .innerText = `Current Humidity: ${WindDirection}`
-                .innerText = `Current Humidity: ${weatherCondition}`
-                    .innerText = `Current Humidity: ${weatherIconCode}`
+    currentDayWindSpeedEl.innerText = `Current Wind Speed: ${windSpeed}`
+    currentDayWindDirectionEl.innerText = `Current Wind Direction: ${WindDirection}`
+    currentDayWeatherConditionEl.innerText = `Current Weather Condition: ${weatherCondition}`
+
 
 
 
@@ -405,7 +524,6 @@ function printCurrentWeather(data) {
     console.log(sunset)
     console.log(weatherCondition)
     console.log(WindDirection)
-    // console.log(weatherIcon)
     console.log(weatherIconCode)
     console.log(weatherIconCodeNum)
 }
