@@ -48,7 +48,7 @@
                 </button>
             </div>
             <div class="previous">
-                <ul id="previousSearchList"></ul>
+                <div id="previousSearchList"></div>
             </div>
         </aside>
 
@@ -83,66 +83,11 @@
             </div>
 
             <div class="card-deck" id="weatherPrint">
-                <!-- <div id="day1" class="daysWeather">
-                    <img src="./assets/images/01d.png" class="card-img-top" alt="..." />
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">
-                            Some quick example text to build on the card title and make up
-                            the bulk of the card's content.
-                        </p>
-
-                    </div>
-                </div>
-                <div id="day2" class="daysWeather">
-                    <img src="..." class="card-img-top" alt="..." />
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">
-                            Some quick example text to build on the card title and make up
-                            the bulk of the card's content.
-                        </p>
-
-                    </div>
-                </div>
-                <div id="day3" class="daysWeather">
-                    <img src="..." class="card-img-top" alt="..." />
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">
-                            Some quick example text to build on the card title and make up
-                            the bulk of the card's content.
-                        </p>
-
-                    </div>
-                </div>
-                <div id="day4" class="daysWeather">
-                    <img src="..." class="card-img-top" alt="..." />
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">
-                            Some quick example text to build on the card title and make up
-                            the bulk of the card's content.
-                        </p>
-
-                    </div>
-                </div>
-                <div id="day5" class="daysWeather">
-                    <img src="..." class="card-img-top" alt="..." />
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">
-                            Some quick example text to build on the card title and make up
-                            the bulk of the card's content.
-                        </p>
-                    </div>
-                </div> -->
-
-            <!-- </div> -->
+               
         </div>
         </div>
     </main>
-
+<div class="modals">
     <div class="modal fade" id="cityStateModal" tabindex="-1" aria-labelledby="cityStateModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -220,39 +165,34 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                         Close
                     </button>
-                    <button type="button" id="cityModalbtn" class="btn btn-primary">
-                        Save changes
+                    <button type="button" id="cityModalbtn" class="btn save btn-primary" data-bs-toggle="modal">
+                        Search
                     </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="zipSearchModal" tabindex="-1" aria-labelledby="zipSearchModalLabel" aria-hidden="true">
+ 
+    <div class="modal fade" id="zipSearchModal" aria-labelledby="zipSearchModalLabel" tabindex="-1">
         <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="zipSearchModalLabel">
-                        Search by Zipcode
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <input id="zipSearch" class="form-control" type="text" placeholder="Enter a ZipCode"
-                        aria-label="default input example" />
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                        Close
-                    </button>
-                    <button id="zipSearchBtn" type="button" class="btn btn-primary">
-                        Save changes
-                    </button>
-                </div>
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title"  id="zipSearchModalLabel">Search by Zipcode</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
             </div>
+            <div class="modal-body">
+              <p><input id="zipSearch" class="form-control" type="text" placeholder="Enter a ZipCode"
+                aria-label="default input example" /></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" id="zipSearchBtn" class="btn btn-primary" data-bs-toggle="modal">Search</button>
+            </div>
+          </div>
         </div>
-    </div>
-
+      </div>
+</div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>

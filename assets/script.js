@@ -2,12 +2,18 @@
 const userLocationBtn = document.getElementById('userLocation')
 const stateSelectDDDiv = document.getElementById('stateDropDownDiv')
 const userZipForm = document.getElementById('zipSearch')
+const zipSearchModalEl = document.getElementById('zipSearchModal')
 const zipModalbtn = document.getElementById('zipSearchBtn')
 const cityModalbtn = document.getElementById('cityModalbtn')
 const citySearchInput = document.getElementById('citySearch')
 const previousSearchList = document.getElementById('previousSearchList')
 const weatherPrintEl = document.getElementById('weatherPrint')
 const recallBtnEl = document.querySelectorAll('.recall')
+const modalBackdropEl = document.querySelectorAll('.modal-backdrop')
+const clearPreviousSearchsBtnEl = document.getElementById('clearPreviousSearchs')
+const previousSearchListChildren = previousSearchList.children
+console.log(previousSearchListChildren)
+
 
 // Main card print
 const cityPrintEl = document.getElementById('cityPrint')
@@ -21,12 +27,47 @@ const currentDayWindSpeedEl = document.getElementById('currentDayWindSpeed')
 const currentDayWindDirectionEl = document.getElementById('currentDayWindDirection')
 const currentDayWeatherConditionEl = document.getElementById('currentDayWeatherCondition')
 
-function RetreivePrevious() {
 
-    // previousSearchList.removeChild('li')
+clearPreviousSearchsBtnEl.addEventListener('click', function(){
+    localStorage.clear()
+    RetreivePrevious()
+    
+})
+
+zipModalbtn.addEventListener('click', function(){
+    RetreivePrevious()
+  
+})
+
+cityModalbtn.addEventListener('click', function(){
+    RetreivePrevious()
+  
+})
+
+// previousSearchListChildren.forEach(function (currentBtn) {
+//     currentBtn.addEventListener('click', function(){
+//         console.log('asd')
+//     })
+//   })
+  
+  function recallPreviousSearchs(e){
+let lat = e.target.getattribute('lat')
+let long = e.target.getattribute('long')
+console.log(lat)
+
+    weatherByLatLong(lat, long)
+
+  }
+  console.log(recallBtnEl)
+
+
+function RetreivePrevious() {
+    previousSearchList.innerHTML = ''
+    
 
     const previousSearchArray = JSON.parse(localStorage.getItem('previousSearchArray')) || []
     console.log(previousSearchArray)
+
 
     for (let i = 0; i < previousSearchArray.length && i < 5; i++) {
         const city = previousSearchArray[i].city
@@ -35,20 +76,19 @@ function RetreivePrevious() {
 
 
 
-        const list = document.createElement('li')
+        // const list = document.createElement('li')
         const buttonEl = document.createElement('button')
         buttonEl.innerText = city
         buttonEl.setAttribute('class', 'btn recall btn-primary previousButton')
         buttonEl.setAttribute('latitude', lat)
         buttonEl.setAttribute('longitude', long)
+        buttonEl.setAttribute('id', [i])
 
 
 
-        list.appendChild(buttonEl)
-        previousSearchList.appendChild(list)
+        // list.appendChild(buttonEl)
+        previousSearchList.appendChild(buttonEl)
         
-
-
     }
 }
 
@@ -63,6 +103,7 @@ function StoreSearch(city) {
 
 
 }
+
 
 
 
@@ -243,9 +284,8 @@ cityModalbtn.addEventListener('click', function weatherByCity(e) {
             console.log(error);
         });
 
+
     var CurrentCityRequest = `https://api.openweathermap.org/data/2.5/weather?q=${userCityInput},${userStateInput}&appid=608f5d7e99b3bee2a797c9ab316ee2c6&units=imperial`
-
-
 
 
 
@@ -287,51 +327,13 @@ function searchResults(data) {
 
 }
 
-let WindDirection;
-function WindDegToDirection(wd) {
-    switch (true) {
-        case 0:
-            WindDirection = "N";
-            break;
-        case 360:
-            WindDirection = "N";
-            break;
-        case 90:
-            WindDirection = "E";
-            break;
-        case 180:
-            WindDirection = "S";
-            break;
-        case 270:
-            WindDirection = "W";
-            break;
-        case (wd > 0 && wd < 90):
-            WindDirection = "NE";
-            break;
-        case (wd > 90 && wd < 180):
-            WindDirection = "SE";
-            break;
-        case (wd > 180 && wd < 270):
-            WindDirection = "SW";
-            break;
-        case (wd > 270 && wd < 360):
-            WindDirection = "NW";
-            break;
-        default:
-            WindDirection = "N/A";
-            break;
-    }
-}
 
 
 function printWeather(data) {
-    let city = data.city.name
-    let sunrise = data.city.sunrise
-    let sunset = data.city.sunset
     const timeZone = data.city.timezone
     let weatherArray = data.list
     console.log(weatherArray)
-
+    weatherPrintEl.innerHTML = ''
  
     for (let i = 0; i < weatherArray.length; i++) {
         let timeStamp = weatherArray[i].dt

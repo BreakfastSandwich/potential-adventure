@@ -5,7 +5,7 @@ body{
     display: flex;
     flex-direction: column;
     position: relative;
-    background: url(./nature.jpg) no-repeat fixed center;
+    background: url(./images/nature.jpg) no-repeat fixed center;
     background-size: cover;
     /* object-fit: contain;
     object-position: center;  */
@@ -23,7 +23,7 @@ header {
     position: fixed;
     top: 0px;
     height: 5rem;
-    z-index: 2;
+    z-index: 1000;
     background-image: linear-gradient(to bottom right, rgba(150, 212, 228, 0.336), rgba(173, 209, 241, 0.582));
     backdrop-filter: blur(.1rem);
     box-shadow: 0 2px 5px 1px #666;
@@ -36,7 +36,7 @@ header {
 
 #header {
   
-    font-size: 2rem;
+    font-size: 4vh;
     font-weight: bold;
     margin: .5rem;
     padding: .5rem;
@@ -168,7 +168,7 @@ aside {
     margin-top: 2.5rem;
     position: fixed;
     z-index: 2;
-    top:5vh;
+    top:5.5rem;
     background-image: linear-gradient(to bottom right,rgba(173, 209, 241, 0.425), rgba(255, 255, 255, 0.808));
 }
 
